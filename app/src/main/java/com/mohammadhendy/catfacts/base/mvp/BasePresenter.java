@@ -10,7 +10,10 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.subjects.BehaviorSubject;
 import timber.log.Timber;
 
-import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.PresenterDependencies;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers.Schedulers;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.SharedPrefs.SharedPrefs;
+import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
@@ -22,12 +25,12 @@ public abstract class BasePresenter<V extends View> implements Presenter {
 
     private V view;
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
-    private Schedulers schedulers;
+    private PresenterDependencies presenterDependencies;
 
-    public BasePresenter(V view, Schedulers schedulers) {
+    public BasePresenter(V view, PresenterDependencies presenterDependencies) {
         Timber.tag(BasePresenter.class.getSimpleName());
         this.view = view;
-        this.schedulers = schedulers;
+        this.presenterDependencies = presenterDependencies;
     }
 
     @CallSuper
@@ -84,6 +87,18 @@ public abstract class BasePresenter<V extends View> implements Presenter {
         Timber.d("onRestoreInstanceState");
     }
 
+    protected V getView() {
+        return view;
+    }
+
+    protected Schedulers getSchedulers() {
+        return presenterDependencies.getSchedulers();
+    }
+
+    protected SharedPrefs getSharedPrefs() {
+        return presenterDependencies.getSharedPrefs();
+    }
+
     protected Observable<ActivityEvent> lifeCycle() {
         return lifecycleSubject;
     }
@@ -95,7 +110,7 @@ public abstract class BasePresenter<V extends View> implements Presenter {
      * @return Transformed Observable that is bound Activity Lifecycle
      */
     protected <O> ObservableTransformer<O, O> applyLifecycleBinding() {
-        return upstream -> upstream.compose(RxLifecycleAndroid.bindActivity(lifeCycle()));
+        return upstream -> upstream.compose(RxLifecycle.bindUntilEvent(lifeCycle(), ActivityEvent.DESTROY));
     }
 
     /**
@@ -118,8 +133,8 @@ public abstract class BasePresenter<V extends View> implements Presenter {
      */
     protected <O> ObservableTransformer<O, O> applySchedulers() {
         return upstream -> upstream
-                .subscribeOn(schedulers.getIOScheduler())
-                .observeOn(schedulers.getMainThread());
+                .subscribeOn(getSchedulers().getIOScheduler())
+                .observeOn(getSchedulers().getMainThread());
     }
 
 }

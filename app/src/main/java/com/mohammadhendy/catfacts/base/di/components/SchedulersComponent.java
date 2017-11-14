@@ -3,7 +3,7 @@ package com.mohammadhendy.catfacts.base.di.components;
 import android.support.annotation.NonNull;
 
 import com.mohammadhendy.catfacts.base.di.modules.SchedulersModule;
-import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers.Schedulers;
 
 import dagger.Component;
 

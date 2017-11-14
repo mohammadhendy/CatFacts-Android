@@ -1,7 +1,7 @@
 package com.mohammadhendy.catfacts.base.di.modules;
 
-import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers;
-import com.mohammadhendy.catfacts.base.mvp.dependencies.SchedulersImp;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers.Schedulers;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers.SchedulersImp;
 
 import dagger.Module;
 import dagger.Provides;

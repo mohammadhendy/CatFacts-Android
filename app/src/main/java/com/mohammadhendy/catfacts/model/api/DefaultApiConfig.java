@@ -34,12 +34,12 @@ public class DefaultApiConfig extends ApiConfig {
      * @return
      */
     public static DefaultApiConfig getInstance() {
-        CatFactsApiClient catFactsApiClient = new CatFactsApiClient();
+        CatFactsApiClient apiClient = new CatFactsApiClient();
         return new DefaultApiConfig(BuildConfig.DEBUG, builder -> {
             builder.connectTimeout(10, TimeUnit.SECONDS);
             builder.readTimeout(15, TimeUnit.SECONDS);
             builder.writeTimeout(15, TimeUnit.SECONDS);
             return builder;
-        }, BuildConfig.BASE_URL, catFactsApiClient);
+        }, BuildConfig.BASE_URL, apiClient);
     }
 }

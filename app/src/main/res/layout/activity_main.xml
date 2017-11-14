@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mohammadhendy.catfacts.main.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/small"
+        android:layout_marginBottom="@dimen/xsmall"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="@string/select_length_of_random_fact"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/activity_main_slider_hint_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="Min = 50, and Max = 400"
+        />
+
+    <TextView
+        android:id="@+id/activity_main_slider_selected_value_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="300"
+        />
+
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/activity_main_length_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/medium"
+        android:paddingEnd="@dimen/medium"
+        android:paddingTop="@dimen/small"
+        android:paddingBottom="@dimen/small"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginStart="@dimen/small"
+        android:layout_marginEnd="@dimen/small"
+        layout="@layout/list_item_catfact"
+        ></include>
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.mohammadhendy.catfacts.base.mvp.dependencies;
+package com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers;
 
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;

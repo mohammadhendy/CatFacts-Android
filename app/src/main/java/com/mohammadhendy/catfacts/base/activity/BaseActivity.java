@@ -10,9 +10,16 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.mohammadhendy.catfacts.R;
 import com.mohammadhendy.catfacts.base.Utils.DialogUtils;
 import com.mohammadhendy.catfacts.base.app.BaseApp;
+import com.mohammadhendy.catfacts.base.di.components.ApiClientComponent;
+import com.mohammadhendy.catfacts.base.di.components.DaggerApiClientComponent;
+import com.mohammadhendy.catfacts.base.di.components.PresenterDependenciesComponent;
 import com.mohammadhendy.catfacts.base.di.components.SchedulersComponent;
+import com.mohammadhendy.catfacts.base.di.modules.ApiClientModule;
+import com.mohammadhendy.catfacts.base.model.api.ApiClient;
+import com.mohammadhendy.catfacts.base.model.api.ApiConfig;
 import com.mohammadhendy.catfacts.base.mvp.BasePresenter;
-import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.PresenterDependencies;
+import com.mohammadhendy.catfacts.base.mvp.dependencies.Schedulers.Schedulers;
 import com.mohammadhendy.catfacts.base.mvp.View;
 
 import butterknife.ButterKnife;
@@ -33,21 +40,33 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         return presenter;
     }
 
-    protected final SchedulersComponent getSchedulersComponent() {
+    private PresenterDependenciesComponent getPresenterDependenciesComponent() {
         return ((BaseApp) getApplication()).
-                getSchedulersComponent();
+                getPresenterDependenciesComponent();
     }
 
-    protected final Schedulers getSchedulers() {
-        return getSchedulersComponent().schedulers();
+    protected final PresenterDependencies getPresenterDependencies() {
+        return getPresenterDependenciesComponent().presenterDependencies();
+    }
+
+    protected final <T>T getApiClient(ApiConfig apiConfig) {
+        return getApiClientComponent(apiConfig).apiClient().getApiClient();
+    }
+
+    private ApiClientComponent getApiClientComponent(ApiConfig apiConfig) {
+        return DaggerApiClientComponent
+                .builder()
+                .apiClientModule(new ApiClientModule(apiConfig))
+                .build();
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(getLayout());
         bindViews();
-        presenter = createPresenter(getSchedulers());
+        presenter = createPresenter(getPresenterDependencies());
+        initViews(savedInstanceState);
         presenter.onCreate(savedInstanceState);
     }
 
@@ -131,7 +150,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     abstract protected @LayoutRes int getLayout();
-    abstract protected P createPresenter(Schedulers schedulers);
+    abstract protected P createPresenter(PresenterDependencies presenterDependencies);
+    abstract protected void initViews(@Nullable Bundle savedInstanceState);
 
 
 }

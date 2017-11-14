@@ -11,7 +11,7 @@ import com.mohammadhendy.catfacts.model.api.DefaultApiConfig;
 public class App extends BaseApp {
 
     @Override
-    protected ApiConfig getApiConfig() {
-        return DefaultApiConfig.getInstance();
+    public void onCreate() {
+        super.onCreate();
     }
 }
