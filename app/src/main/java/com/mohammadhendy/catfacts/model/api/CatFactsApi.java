@@ -18,7 +18,7 @@ public interface CatFactsApi {
 
     @Headers({ACCEPT_HEADER, CONTENT_TYPE_HEADER})
     @GET("facts")
-    Observable<ListResponse<CatFact>> fetchFacts(@Query("limit") Integer limit, @Query("max_length") Integer maxLength);
+    Observable<ListResponse<CatFact>> fetchFacts(@Query("limit") Integer limit, @Query("page") Integer page, @Query("max_length") Integer maxLength);
 
     @Headers({ACCEPT_HEADER, CONTENT_TYPE_HEADER})
     @GET("fact")

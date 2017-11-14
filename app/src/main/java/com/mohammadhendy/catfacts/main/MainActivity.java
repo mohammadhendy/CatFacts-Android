@@ -1,23 +1,24 @@
 package com.mohammadhendy.catfacts.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.widget.RxSeekBar;
-import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.mohammadhendy.catfacts.R;
 import com.mohammadhendy.catfacts.base.activity.BaseActivity;
 import com.mohammadhendy.catfacts.base.mvp.dependencies.PresenterDependencies;
+import com.mohammadhendy.catfacts.catfactslist.CatFactsListActivity;
 import com.mohammadhendy.catfacts.model.api.CatFactsApiClient;
 import com.mohammadhendy.catfacts.model.api.DefaultApiConfig;
-import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
 
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     ImageButton listItemCatfactShareBtn;
     @BindView(R.id.activity_main_slider_selected_value_tv)
     TextView activityMainSliderSelectedValueTv;
+    @BindView(R.id.activity_main_show_facts_btn)
+    AppCompatButton activityMainShowFactsBtn;
 
     @Override
     protected int getLayout() {
@@ -64,4 +67,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         activityMainSliderSelectedValueTv.setText(String.valueOf(correctedValue));
     }
 
+    @OnClick(R.id.activity_main_show_facts_btn)
+    public void onShowAllFactsClicked() {
+        Intent intent = new Intent(this, CatFactsListActivity.class);
+        this.startActivity(intent);
+    }
 }

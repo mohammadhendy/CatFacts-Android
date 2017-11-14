@@ -58,4 +58,16 @@
         layout="@layout/list_item_catfact"
         ></include>
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/activity_main_show_facts_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/small"
+        android:paddingEnd="@dimen/small"
+        android:background="@color/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/medium"
+        android:text="@string/show_all_facts"
+        />
+
 </LinearLayout>

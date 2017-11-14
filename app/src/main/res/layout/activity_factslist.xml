@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.malinskiy.superrecyclerview.SuperRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/super_recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/small"
+    android:clipChildren="false"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:scrollbars="none"
+    app:layout_empty="@layout/layout_empty_view_default"
+    app:layout_moreProgress="@layout/layout_view_more_progress_wrapper"
+    app:layout_progress="@layout/layout_view_progress_wrapper" />

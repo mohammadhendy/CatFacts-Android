@@ -37,11 +37,12 @@ public class CatFactsApiClient extends ApiClient {
     /**
      * Fetch list of facts with limit or max length restriction
      * @param limit optional number of facts required
+     * @param page optional page number
      * @param maxLength optional max length of facts required
      * @return Observable of ListResponse of CatFacts
      */
-    public Observable<ListResponse<CatFact>> fetchFacts(Integer limit, Integer maxLength) {
-        return catFactsApi.fetchFacts(limit, maxLength);
+    public Observable<ListResponse<CatFact>> fetchFacts(Integer limit, Integer page, Integer maxLength) {
+        return catFactsApi.fetchFacts(limit, page, maxLength);
     }
 
 }
