@@ -19,7 +19,7 @@ public class BitmapUtils {
      * @param width
      * @return Bitmap of the view
      */
-    public static Bitmap getBitmapFromView(View view, int height, int width) {
+    public static Bitmap getBitmapFromView(View view, int width, int height) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Drawable bgDrawable = view.getBackground();

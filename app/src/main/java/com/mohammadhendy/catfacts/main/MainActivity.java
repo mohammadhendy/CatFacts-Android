@@ -25,6 +25,7 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
 
@@ -75,6 +76,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     public void share(File file) {
+        Timber.d("File to Share " + file.getAbsolutePath());
         SharingUtils.shareImage(this, file);
     }
 

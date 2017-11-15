@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.mohammadhendy.catfacts.R;
-import com.mohammadhendy.catfacts.base.Utils.BitmapUtils;
 import com.mohammadhendy.catfacts.base.adapter.BaseViewHolder;
 import com.mohammadhendy.catfacts.model.core.CatFact;
 

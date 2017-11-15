@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context="com.mohammadhendy.catfacts.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/small"
-        android:layout_marginBottom="@dimen/xsmall"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/select_length_of_random_fact"
-        />
-
-    <TextView
-        android:id="@+id/activity_main_slider_hint_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/small"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        tools:text="Min = 50, and Max = 400"
-        />
-
-    <TextView
-        android:id="@+id/activity_main_slider_selected_value_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/small"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="300"
-        />
-
-
-    <android.support.v7.widget.AppCompatSeekBar
-        android:id="@+id/activity_main_length_slider"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/medium"
-        android:paddingEnd="@dimen/medium"
-        android:paddingTop="@dimen/small"
-        android:paddingBottom="@dimen/small"
-        android:layout_gravity="center_horizontal"
-        />
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginBottom="@dimen/xsmall"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="@string/select_length_of_random_fact"
+            />
 
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large"
-        android:layout_marginStart="@dimen/small"
-        android:layout_marginEnd="@dimen/small"
-        layout="@layout/list_item_catfact"
-        ></include>
+        <TextView
+            android:id="@+id/activity_main_slider_hint_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/small"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            tools:text="Min = 50, and Max = 400"
+            />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/activity_main_show_facts_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/small"
-        android:paddingEnd="@dimen/small"
-        android:background="@color/colorAccent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/medium"
-        android:text="@string/show_all_facts"
-        />
+        <TextView
+            android:id="@+id/activity_main_slider_selected_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/small"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="300"
+            />
 
-</LinearLayout>
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/activity_main_length_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/medium"
+            android:paddingEnd="@dimen/medium"
+            android:paddingTop="@dimen/small"
+            android:paddingBottom="@dimen/small"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large"
+            android:layout_marginStart="@dimen/small"
+            android:layout_marginEnd="@dimen/small"
+            layout="@layout/list_item_catfact"
+            ></include>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/activity_main_show_facts_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/small"
+            android:paddingEnd="@dimen/small"
+            android:layout_marginBottom="@dimen/large"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/medium"
+            android:text="@string/show_all_facts"
+            />
+    </LinearLayout>
+
+</ScrollView>
