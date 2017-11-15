@@ -25,11 +25,6 @@ public class ObservableUtils {
      */
     public static Single<File> createSaveImageObservable(final Context context, final Bitmap bitmap, final String imageName) {
         return Single.create(e -> {
-            if (Looper.myLooper() == Looper.getMainLooper()) {
-                e.onError(new IllegalStateException(
-                        "Expected to be called on the background thread but was " + Thread.currentThread().getName()));
-                return;
-            }
             File path = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), imageName + ".png");
             try {
                 FileOutputStream fos = new FileOutputStream(path);

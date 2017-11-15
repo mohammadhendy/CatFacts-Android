@@ -40,7 +40,7 @@ public class MainPresenter extends BasePresenter<MainView> {
     public void bindSliderChanges(Observable<Integer> changes) {
         changes
                 .distinctUntilChanged() // skip repeated values
-                .debounce(100, TimeUnit.MILLISECONDS) // don't accept any values until 300 millis pass
+                .debounce(100, TimeUnit.MILLISECONDS) // don't accept any values until 100 millis pass
                 .observeOn(getSchedulers().getMainThread())
                 .flatMap(value -> {
                     getView().updateSliderSelected(value);
@@ -52,6 +52,7 @@ public class MainPresenter extends BasePresenter<MainView> {
                         //Skip exceptions and resume subscriptions
                         .onErrorResumeNext(throwable -> {
                             Timber.d(throwable);
+                            getView().displayErrorMessage(throwable.getMessage() != null ? throwable.getMessage() : "Exception: while handling observable");
                             return Observable.empty();
                         }))
                 .compose(applyLifecycleBinding())

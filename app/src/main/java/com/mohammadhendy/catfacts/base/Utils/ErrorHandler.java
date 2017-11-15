@@ -19,6 +19,9 @@ public class ErrorHandler implements Consumer<Throwable> {
     @Override
     public void accept(Throwable throwable) {
         Timber.d(throwable);
-        view.displayErrorMessage(throwable.getMessage());
+        if (throwable.getMessage() != null)
+            view.displayErrorMessage(throwable.getMessage());
+        else
+            view.displayErrorMessage("Exception: while handling observable");
     }
 }

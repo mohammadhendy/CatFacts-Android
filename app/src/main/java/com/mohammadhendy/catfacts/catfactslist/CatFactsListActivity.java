@@ -2,7 +2,9 @@ package com.mohammadhendy.catfacts.catfactslist;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
@@ -32,6 +34,19 @@ public class CatFactsListActivity extends BaseListActivity<CatFact,
 
     @BindView(R.id.super_recycler_view)
     SuperRecyclerView superRecyclerView;
+
+    @Override
+    protected void initViews(@Nullable Bundle savedInstanceState) {
+        super.initViews(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected RecyclerView getRecyclerView() {
