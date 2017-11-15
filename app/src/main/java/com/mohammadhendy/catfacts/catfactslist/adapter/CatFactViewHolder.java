@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.mohammadhendy.catfacts.R;
+import com.mohammadhendy.catfacts.base.Utils.BitmapUtils;
 import com.mohammadhendy.catfacts.base.adapter.BaseViewHolder;
 import com.mohammadhendy.catfacts.model.core.CatFact;
 
@@ -25,7 +26,7 @@ public class CatFactViewHolder extends BaseViewHolder<CatFact> {
 
     public CatFactViewHolder(ViewGroup parent, @LayoutRes int resLayout, ShareClickListener shareClickListener) {
         super(parent, resLayout);
-        RxView.clicks(listItemCatfactShareBtn).subscribe(__ -> shareClickListener.shareClicked(getAdapterPosition()));
+        RxView.clicks(listItemCatfactShareBtn).subscribe(__ -> shareClickListener.shareClicked(listItemCatfactFactTv));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.mohammadhendy.catfacts.main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
@@ -10,11 +11,16 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.widget.RxSeekBar;
 import com.mohammadhendy.catfacts.R;
+import com.mohammadhendy.catfacts.base.Utils.BitmapUtils;
+import com.mohammadhendy.catfacts.base.Utils.ObservableUtils;
+import com.mohammadhendy.catfacts.base.Utils.SharingUtils;
 import com.mohammadhendy.catfacts.base.activity.BaseActivity;
 import com.mohammadhendy.catfacts.base.mvp.dependencies.PresenterDependencies;
 import com.mohammadhendy.catfacts.catfactslist.CatFactsListActivity;
 import com.mohammadhendy.catfacts.model.api.CatFactsApiClient;
 import com.mohammadhendy.catfacts.model.api.DefaultApiConfig;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,9 +73,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         activityMainSliderSelectedValueTv.setText(String.valueOf(correctedValue));
     }
 
+    @Override
+    public void share(File file) {
+        SharingUtils.shareImage(this, file);
+    }
+
     @OnClick(R.id.activity_main_show_facts_btn)
     public void onShowAllFactsClicked() {
         Intent intent = new Intent(this, CatFactsListActivity.class);
         this.startActivity(intent);
+    }
+
+    @OnClick(R.id.list_item_catfact_share_btn)
+    public void onShareClicked() {
+        Bitmap factBitmap = BitmapUtils.getBitmapFromView(listItemCatfactFactTv, listItemCatfactFactTv.getWidth(), listItemCatfactFactTv.getHeight());
+        getPresenter().shareFactImage(ObservableUtils.createSaveImageObservable(this, factBitmap, "temp_image"));
     }
 }
